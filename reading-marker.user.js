@@ -95,6 +95,11 @@
         // 點擊標記按鈕 -> 記錄滾動位置
         markBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
+
+            if (isLongPressed) {
+                return; 
+            }
+
             const currentScroll = window.scrollY || window.pageYOffset; 
             localStorage.setItem(workId, currentScroll); 
             alert('已成功標記當前位置！'); 
@@ -105,9 +110,13 @@
 
         // 長按標記按鈕 -> 清空此頁面記錄
         markBtn.addEventListener('touchstart', (e) => {
+            isLongPressed = false; 
+
             markBtn.style.transform = 'scale(0.9)'; 
+            
             longPressTimer = setTimeout(() => {
                 isLongPressed = true; 
+
                 if (confirm('是否要清空此頁的閱讀進度記錄？')) {
                     localStorage.removeItem(workId); 
                     resetJumpButton();  // 跳轉按鈕重置
@@ -126,6 +135,10 @@
             clearTimeout(longPressTimer); 
             if (isLongPressed) {
                 e.preventDefault(); 
+
+                setTimeout(() => {
+                    isLongPressed = false; 
+                }, 0);
             }
         }); 
 
@@ -176,3 +189,4 @@
         btn.style.setProperty('color', textColor, 'important'); 
     }
 })(); 
+
