@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        網路小說閱讀進度標記
 // @namespace   https://github.com/rye1014
-// @version     1.0.0
+// @version     1.1.0
 // @description 專為 iPhone Safari (Stay) 優化的閱讀進度標記工具，精準支援 AO3 與 FC2 部落格，防止重整導致閱讀位置遺失。
 // @author      rye1014
 // @updateURL   https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
@@ -81,7 +81,18 @@
             jumpBtn.style.opacity = '0.6';
         }
 
-        // 
+        // 長按清空
+        let longPressTimer = null; 
+        let isLongPressed = false; 
+
+        // 跳轉按鈕重置為灰色
+        function resetJumpButton() {
+            jumpBtn.style.setProperty('background-color', '#dddddd', 'important'); 
+            jumpBtn.style.setProperty('color', '#888888', 'important'); 
+            jumpBtn.style.opacity = '0.6'; 
+        }
+
+        // 點擊標記按鈕 -> 記錄滾動位置
         markBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
             const currentScroll = window.scrollY || window.pageYOffset; 
@@ -92,6 +103,33 @@
             jumpBtn.style.opacity = '1';
         }); 
 
+        // 長按標記按鈕 -> 清空此頁面記錄
+        markBtn.addEventListener('touchstart', (e) => {
+            markBtn.style.transform = 'scale(0.9)'; 
+            longPressTimer = setTimeout(() => {
+                isLongPressed = true; 
+                if (confirm('是否要清空此頁的閱讀進度記錄？')) {
+                    localStorage.removeItem(workId); 
+                    resetJumpButton();  // 跳轉按鈕重置
+                    alert('已清空本頁記錄！'); 
+                }
+            }, 800);  // 判定長按時間：0.8 sec
+        }); 
+
+        markBtn.addEventListener('touchmove', () => { 
+            markBtn.style.transform = 'scale(1)'; 
+            clearTimeout(longPressTimer); 
+        }); 
+
+        markBtn.addEventListener('touchend', (e) => {
+            markBtn.style.transform = 'scale(1)'; 
+            clearTimeout(longPressTimer); 
+            if (isLongPressed) {
+                e.preventDefault(); 
+            }
+        }); 
+
+        // 點擊跳轉按鈕
         jumpBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
             const savedScroll = localStorage.getItem(workId); 
@@ -129,6 +167,8 @@
             cursor: pointer !important;
             text-align: center !important;
             user-select: none !important;
+            transition: transform 0.1s ease !important; 
+            -webkit-transition: -webkit-transform 0.1s ease !important; 
             -webkit-user-select: none !important;
             -webkit-tap-highlight-color: transparent !important;
         `; 
@@ -136,5 +176,3 @@
         btn.style.setProperty('color', textColor, 'important'); 
     }
 })(); 
-
-
