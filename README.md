@@ -36,6 +36,11 @@
 
 ---
 
+## 畫面預覽
+<img src="images/preview.jpg" width="320" alt="畫面預覽">   
+
+---
+
 <details>
 <summary><h2> 更新日誌 </h2></summary>
 
@@ -46,8 +51,3 @@
 - 基礎版本發佈，支援 AO3 與 FC2 部落和基本滾動位置記錄與跳轉。
 
 </details>
-
----
-
-## 畫面預覽
-<img src="images/preview.jpg" width="320" alt="畫面預覽">   
