@@ -47,5 +47,7 @@
 
 </details>
 
+---
+
 ## 畫面預覽
 <img src="images/preview.jpg" width="320" alt="畫面預覽">   
