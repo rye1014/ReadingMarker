@@ -18,7 +18,7 @@
 
 ## 安裝
 
-1. 手機確保以安裝並開啟 [Stay for Safari](https://apps.apple.com/tw/app/stay-for-safari-%E4%BD%BF%E7%94%A8%E8%80%85%E8%85%B3%E6%9C%AC%E8%88%87%E5%BB%A3%E5%91%8A%E6%94%94%E6%88%AA%E6%93%B4%E5%85%85/id1591620171)
+1. 手機確保已安裝並開啟 [Stay for Safari](https://apps.apple.com/tw/app/stay-for-safari-%E4%BD%BF%E7%94%A8%E8%80%85%E8%85%B3%E6%9C%AC%E8%88%87%E5%BB%A3%E5%91%8A%E6%94%94%E6%88%AA%E6%93%B4%E5%85%85/id1591620171)
 2. 開啟 Stay App，點擊右上角 **「+」**，選擇 **通過鏈接導入**
 3. 複製並貼上下方網址：
    ```
