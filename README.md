@@ -1,6 +1,7 @@
 # ReadingMarker
 
 一個為 iPhone Safari 寫的閱讀進度標記腳本。
+
 主要用來解決在手機上看長篇小說 (如 AO3 或 FC2) 時，因為不小心重整網頁或切換 App 導致畫面跳回最頂端、找不到上次讀到哪的痛點。
 
 ---
@@ -33,4 +34,4 @@
 2. 再次進入同網頁時，按下 **▶**就會滾動會上次標記處。
 
 ### 畫面預覽
-![畫面預覽](images/preview.PNG)
+<img src="images/preview.png" width="320" alt="畫面預覽">
