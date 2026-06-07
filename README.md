@@ -34,4 +34,4 @@
 2. 再次進入同網頁時，按下 **▶**就會滾動會上次標記處。
 
 ### 畫面預覽
-<img src="images/preview.PNG" width="320" alt="畫面預覽">   
+<img src="images/preview.jpg" width="320" alt="畫面預覽">   
