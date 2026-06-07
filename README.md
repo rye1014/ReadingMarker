@@ -38,7 +38,6 @@
 
 <details>
 <summary><h2> 更新日誌 </h2></summary>
-<br>
 
 ### [v1.1.0] - 2026-06-07
 - **新增**：長按標記按鈕 ■ 清空本頁記錄
@@ -48,5 +47,5 @@
 
 </details>
 
-### 畫面預覽
+## 畫面預覽
 <img src="images/preview.jpg" width="320" alt="畫面預覽">   
