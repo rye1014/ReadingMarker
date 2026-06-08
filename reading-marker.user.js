@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        網路小說閱讀進度標記
 // @namespace   https://github.com/rye1014
-// @version     1.1.0
+// @version     1.1.1
 // @description 專為 iPhone Safari (Stay) 優化的閱讀進度標記工具，精準支援 AO3 與 FC2 部落格，防止重整導致閱讀位置遺失。
 // @author      rye1014
 // @updateURL   https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
