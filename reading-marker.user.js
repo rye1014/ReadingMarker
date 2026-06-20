@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        網路小說閱讀進度標記
+// @name        網路小說閱讀進度標記 / Reading Marker
 // @namespace   https://github.com/rye1014
-// @version     1.2.0
-// @description 專為 iPhone Safari (Stay) 優化的閱讀進度標記工具，精準支援 AO3 與 FC2 部落格，防止重整導致閱讀位置遺失。
+// @version     1.2.1
+// @description 手動保存於跳回 AO3、FC2 閱讀位置 / Save and restore reading position on AO3 and FC2
 // @author      rye1014
 // @updateURL   https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
 // @downloadURL https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
@@ -13,12 +13,47 @@
 // @run-at      document-start
 // ==/UserScript==
 
+/*
+ *  使用說明 / Usage
+ * 1. 在 AO3 或 FC2 部落格文章頁開啟腳本後，右下角會顯示 ■ / ▶ 按鈕。
+ * 2. 點擊 ■ 可儲存目前閱讀位置。
+ * 3. 長按 ■ 可清除這篇文章的閱讀位置記錄。
+ * 4. 點擊 ▶ 可跳回上次儲存的位置。
+ * 
+ * 1. When the script runs on an AO3 or FC2 blog work page, the ■ / ▶ buttons appear at the bottom right. 
+ * 2. Tap ■ to save the current reading position. 
+ * 3. Long-press ■ to clear the saved position for this page. 
+ * 4. Tap  ▶ to jump back to the saved position
+ */
+
+
 (function () {
     'use strict';
 
     const host = window.location.hostname;
     const path = window.location.pathname;
     let workId = '';
+
+    const lang = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'zh'; 
+
+    const i18n = {
+        zh: {
+            markSaved: '已保存目前閱讀位置', 
+            confirmClear: '要清除這篇文章的閱讀記錄嗎？', 
+            cleared: '已清除閱讀記錄', 
+            noJumpTarget: '目前沒有可跳轉的位置'
+        }, 
+        en: {
+            markSaved: 'Reading position saved', 
+            confirmClear: 'Clear position history for this page?', 
+            cleared: 'Position history cleared', 
+            noJumpTarget: 'No saved position available'
+        }
+    }; 
+
+    function t(key) {
+        return i18n[lang][key] || i18n.zh[key] || key; 
+    }
 
     // AO3 作品頁：以作品 ID 當 key
     if (host.includes('archiveofourown.org')) {
@@ -171,7 +206,7 @@
 
             const currentScroll = window.scrollY || window.pageYOffset || 0;
             localStorage.setItem(workId, String(currentScroll));
-            alert('已保存目前閱讀位置');
+            alert(t('markSaved'));
             updateJumpButtonState();
         });
 
@@ -182,10 +217,10 @@
             clearLongPressTimer();
             longPressTimer = setTimeout(() => {
                 isLongPressed = true;
-                if (confirm('要清除這篇文章的閱讀紀錄嗎？')) {
+                if (confirm(t('confirmClear'))) {
                     localStorage.removeItem(workId);
                     updateJumpButtonState();
-                    alert('已清除閱讀紀錄');
+                    alert(t('cleared'));
                 }
             }, 800);
         });
@@ -223,7 +258,7 @@
                     behavior: 'smooth'
                 });
             } else {
-                alert('目前沒有可跳轉的位置');
+                alert(t('noJumpTarget'));
             }
         });
 
