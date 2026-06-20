@@ -2,7 +2,7 @@
 // @name        網路小說閱讀進度標記 / Reading Marker
 // @namespace   https://github.com/rye1014
 // @version     1.2.1
-// @description 手動保存於跳回 AO3、FC2 閱讀位置 / Save and restore reading position on AO3 and FC2
+// @description 手動保存與跳回 AO3、FC2 閱讀位置 / Save and restore reading position on AO3 and FC2
 // @author      rye1014
 // @updateURL   https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
 // @downloadURL https://raw.githubusercontent.com/rye1014/ReadingMarker/main/reading-marker.user.js
